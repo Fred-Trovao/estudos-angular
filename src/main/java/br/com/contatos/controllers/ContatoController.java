@@ -25,7 +25,10 @@ public class ContatoController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Contato> list() {
-	return contatoDao.all();
+
+	throw new IllegalStateException("forcanço erro");
+
+	// return contatoDao.all();
     }
 
     @RequestMapping(method = RequestMethod.POST)

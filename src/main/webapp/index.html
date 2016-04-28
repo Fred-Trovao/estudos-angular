@@ -5,6 +5,7 @@
 	<title>Lista Telefônica</title>
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
 	<script type="text/javascript" src="lib/angular/angular.js"></script>
 	<script type="text/javascript" src="lib/angular/angular-messages.js"></script>
 	<script type="text/javascript" src="lib/angular/angular-locale_pt-br.js"></script>
@@ -15,11 +16,18 @@
 	<script type="text/javascript" src="js/services/serialGeneratorService.js"></script>
 	<script type="text/javascript" src="js/config/serialGeneratorConfig.js"></script>
 	<script type="text/javascript" src="js/value/configValue.js"></script>
+	<script type="text/javascript" src="js/filters/nameFilter.js"></script>
+	<script type="text/javascript" src="js/filters/ellipsisFilter.js"></script>
+	<script type="text/javascript" src="js/directives/uiAlertDirective.js"></script>
 </head>
 <body ng-controller="listaTelefonicaCtrl">
 	<div class="jumbotron">
 		<h3>{{app}}</h3>
-
+		
+		<ui-alert title="Ops, aconteceu um problema!">
+			{{error}}
+		</ui-alert>
+		
 		<input placeholder="O que você está buscando?" ng-model="criterioDeBusca" class="form-control"></input>
 
 		<table class="table" ng-show="contatos.length > 0">
@@ -40,7 +48,7 @@
 					{{contato.serial}}
 				</td>
 				<td>
-					{{contato.nome | uppercase}}
+					{{contato.nome | name | ellipsis:10}}
 				</td>
 				<td>
 					{{contato.telefone }}
